@@ -1,0 +1,18 @@
+
+.select2-container--default .select2-selection--single {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    height: auto; 
+}
+
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #888;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--single {
+    border: none !important;
+    box-shadow: none !important;
+} 

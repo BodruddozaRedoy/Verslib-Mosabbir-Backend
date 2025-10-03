@@ -1,0 +1,13 @@
+asgiref==3.9.1
+Django==5.1.2
+django-autocomplete-light==3.12.1
+django-cors-headers==4.8.0
+django-restframework==0.0.1
+django-unfold==0.65.0
+djangorestframework==3.16.1
+sqlparse==0.5.3
+tzdata==2025.2
+pillow==10.3.0  
+cloudinary==1.41.0
+django-cloudinary-storage==0.3.0
+djangorestframework_simplejwt==5.5.1
