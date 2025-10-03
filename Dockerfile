@@ -23,8 +23,12 @@ RUN pip install -r requirements.txt
 # Copy project files
 COPY . .
 
+# Copy entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 # Expose port
 EXPOSE 8080
 
-# Command (use gunicorn in production)
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+# Use entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
