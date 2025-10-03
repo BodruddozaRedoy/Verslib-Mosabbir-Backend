@@ -11,3 +11,6 @@ pillow==10.3.0
 cloudinary==1.41.0
 django-cloudinary-storage==0.3.0
 djangorestframework_simplejwt==5.5.1
+psycopg2-binary>=2.9
+python-decouple>=3.8
+gunicorn==23.0.0
