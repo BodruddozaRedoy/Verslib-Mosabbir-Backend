@@ -8,7 +8,7 @@ services:
       - static_volume:/app/staticfiles
       - media_volume:/app/media
     expose:
-      - "8080"
+      - "8080"  # internal port only
     env_file:
       - .env
     depends_on:
@@ -32,7 +32,7 @@ services:
     image: nginx:stable-alpine
     container_name: nginx
     ports:
-      - "80:80"
+      - "8888:8888"   # host 8888 → container 8888
     volumes:
       - ./deploy/nginx:/etc/nginx/conf.d
       - static_volume:/app/staticfiles
