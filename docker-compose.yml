@@ -1,9 +1,7 @@
-version: "3.9"
-
 services:
-  django:
+  uiverse:
     build: .
-    container_name: uiverse
+    container_name: uiverse-django
     command: gunicorn core.wsgi:application --bind 0.0.0.0:8080 --workers 3
     volumes:
       - .:/app
@@ -11,22 +9,39 @@ services:
       - media_volume:/app/media
     expose:
       - "8080"
+    env_file:
+      - .env
+    depends_on:
+      - db
     restart: always
+
+  db:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   nginx:
     image: nginx:stable-alpine
     container_name: nginx
     ports:
       - "80:80"
-      - "443:443" # enable for SSL
     volumes:
       - ./deploy/nginx:/etc/nginx/conf.d
       - static_volume:/app/staticfiles
       - media_volume:/app/media
     depends_on:
-      - django   # এই নাম Django সার্ভিসের সাথে মিলবে
+      - uiverse
     restart: always
 
 volumes:
   static_volume:
   media_volume:
+  postgres_data:
